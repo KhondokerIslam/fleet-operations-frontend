@@ -31,6 +31,24 @@ export const Add = () => {
 
     }, []);
 
+    const sortDesc = (e) => {
+
+        const columnName = e.target.dataset.id;
+
+        const sortedData = [...data].sort((a, b) => { //[...data] creates a copy and sorts on the copy
+
+            const val1 = String(a[columnName]);
+            const val2 = String(b[columnName]);
+
+            return val2.localeCompare( val1 );
+        })
+
+        console.log( "After sorting: ", sortedData);
+
+        setData(sortedData);
+
+    }
+
     const handleOnChange = (e) => {
         setItem({
             ...item,
@@ -139,9 +157,9 @@ export const Add = () => {
             <table>
                 <thead>
                 <tr>
-                    <th>Vehicle ID</th>
-                    <th>Reg No</th>
-                    <th>Chassis No</th>
+                    <th>Vehicle ID <Button type='button' id="id" name="sortDesc" callback={ sortDesc } /></th>
+                    <th>Reg No <Button type='button' id="regNo" name="sortDesc" callback={ sortDesc } /></th>
+                    <th>Chassis No<Button type='button' id="chassisNo" name="sortDesc" callback={ sortDesc } /></th>
                 </tr>
                 </thead>
                 <tbody>
