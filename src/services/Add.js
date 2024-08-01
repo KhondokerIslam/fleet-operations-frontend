@@ -14,6 +14,7 @@ export const Add = () => {
     }
 
     const [data, setData] = useState([]);
+    const [view, setView] = useState([]);
     const [error, setError] = useState(null);
     const [item, setItem] = useState(initItem);
 
@@ -21,6 +22,7 @@ export const Add = () => {
         try {
             const data = await fetchData();
             setData(data);
+            setView(data);
         } catch (error) {
             setError(error.message);
         }
@@ -30,6 +32,19 @@ export const Add = () => {
         fetchItemData();
 
     }, []);
+
+    const handleOnSearch = (e) => {
+
+        const searchVal = e.target.value;
+
+        const filteredData = [...data].filter( (item) => {
+
+            return item.regNo.toString().toLowerCase().includes(searchVal.toString().toLowerCase());
+
+        });
+
+        setView( filteredData )
+    }
 
     const sortDesc = (e) => {
 
@@ -43,7 +58,7 @@ export const Add = () => {
             return val2.localeCompare( val1 );
         })
 
-        setData(sortedData);
+        setView(sortedData);
 
     }
 
@@ -59,7 +74,7 @@ export const Add = () => {
             return val1.localeCompare( val2 );
         })
 
-        setData(sortedData);
+        setView(sortedData);
 
     }
 
@@ -167,7 +182,19 @@ export const Add = () => {
                 </Button>
 
             </div>
-            <h1>Vehicles List</h1>
+            <h1>
+                Vehicles List
+
+                <Input
+                    id = 'regSearch'
+                    name='regNo'
+                    type='text'
+                    placeHolder="Search Reg No"
+                    callback={ handleOnSearch } >
+
+                </Input>
+
+            </h1>
             <table>
                 <thead>
                 <tr>
@@ -178,7 +205,7 @@ export const Add = () => {
                 </thead>
                 <tbody>
                 {
-                    data.map((item) => (
+                    view.map((item) => (
                         <tr key={item.id}>
                             <td>{item.id}</td>
                             <td>{item.regNo ?? `N/A`}</td>
