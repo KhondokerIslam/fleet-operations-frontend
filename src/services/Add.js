@@ -43,7 +43,21 @@ export const Add = () => {
             return val2.localeCompare( val1 );
         })
 
-        console.log( "After sorting: ", sortedData);
+        setData(sortedData);
+
+    }
+
+    const sortAsc = (e) => {
+
+        const columnName = e.target.dataset.id;
+
+        const sortedData = [...data].sort((a, b) => { //[...data] creates a copy and sorts on the copy
+
+            const val1 = String(a[columnName]);
+            const val2 = String(b[columnName]);
+
+            return val1.localeCompare( val2 );
+        })
 
         setData(sortedData);
 
@@ -157,9 +171,9 @@ export const Add = () => {
             <table>
                 <thead>
                 <tr>
-                    <th>Vehicle ID <Button type='button' id="id" name="sortDesc" callback={ sortDesc } /></th>
-                    <th>Reg No <Button type='button' id="regNo" name="sortDesc" callback={ sortDesc } /></th>
-                    <th>Chassis No<Button type='button' id="chassisNo" name="sortDesc" callback={ sortDesc } /></th>
+                    <th>Vehicle ID <Button type='button' id="id" name="Desc" callback={ sortDesc } /> <Button type='button' id="id" name="Asc" callback={ sortAsc } /></th>
+                    <th>Reg No <Button type='button' id="regNo" name="Desc" callback={ sortDesc } /> <Button type='button' id="regNo" name="Asc" callback={ sortAsc } /></th>
+                    <th>Chassis No<Button type='button' id="chassisNo" name="Desc" callback={ sortDesc } /><Button type='button' id="chassisNo" name="Asc" callback={ sortAsc } /></th>
                 </tr>
                 </thead>
                 <tbody>
