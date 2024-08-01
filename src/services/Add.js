@@ -43,8 +43,6 @@ export const Add = () => {
             return val2.localeCompare( val1 );
         })
 
-        console.log( "After sorting: ", sortedData);
-
         setData(sortedData);
 
     }
@@ -60,8 +58,6 @@ export const Add = () => {
 
             return val1.localeCompare( val2 );
         })
-
-        console.log( "After sorting: ", sortedData);
 
         setData(sortedData);
 
