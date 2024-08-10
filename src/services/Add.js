@@ -2,6 +2,7 @@ import Button from "../component/Button";
 import {fetchData} from "./Fetch";
 import React, {useEffect, useState} from "react";
 import Input from "../component/Input";
+import {Enum} from "../component/Enum";
 import axios from "axios";
 
 export const Add = () => {
@@ -254,6 +255,8 @@ export const Add = () => {
                     type='number'
                     value={item.fuelType}
                     placeHolder="Enter Fuel Type"
+                    enumName='FuelType'
+                    fieldName='fuelType'
                     callback={ handleOnChange } >
 
                 </Enum>

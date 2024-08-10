@@ -20,7 +20,7 @@ export default class Input extends Component {
                 placeholder={this.props.placeHolder}
                 min={this.props.min}
                 max={this.props.max}
-                required={this.required}
+                required={this.props.required}
                 onChange={ (e => this.props.callback(e)) }
             >
 
