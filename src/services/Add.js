@@ -10,7 +10,15 @@ export const Add = () => {
         edit: false,
         id: "",
         regNo: "",
-        chassisNo : ""
+        modelName : "",
+        vehicleSize : "",
+        purchaseYear : "",
+        purchaseCost : "",
+        dailyMaxTravelDistance : "",
+        yearlyTravelRange : "",
+        fuelType : "",
+        fuelConsumptionPerKm : "",
+        vehicleType : ""
     }
 
     const [data, setData] = useState([]);
@@ -112,11 +120,18 @@ export const Add = () => {
 
     const postItem = ()  => {
 
-        const {edit, id, regNo, chassisNo} = item;
+        const {edit, id, regNo, modelName,  vehicleSize,
+            purchaseYear,
+            purchaseCost,
+            dailyMaxTravelDistance,
+            yearlyTravelRange,
+            fuelType,
+            fuelConsumptionPerKm,
+            vehicleType} = item;
 
         var itemData ={}
 
-        /*const itemData = Object.entries( { regNo, chassisNo} )
+        /*const itemData = Object.entries( { regNo, modelName} )
             .reduce((acc, [key, value]) => {
                 acc[key] = value.value;
                 return acc;
@@ -124,7 +139,15 @@ export const Add = () => {
 
         itemData['id'] = item.id
         itemData['regNo'] = item.regNo
-        itemData['chassisNo'] = item.chassisNo
+        itemData['modelName'] = item.modelName
+        itemData['vehicleSize'] = item.vehicleSize
+        itemData['purchaseYear'] = item.purchaseYear
+        itemData['purchaseCost'] = item.purchaseCost
+        itemData['dailyMaxTravelDistance'] = item.dailyMaxTravelDistance
+        itemData['yearlyTravelRange'] = item.yearlyTravelRange
+        itemData['fuelType'] = item.fuelType
+        itemData['fuelConsumptionPerKm'] = item.fuelConsumptionPerKm
+        itemData['vehicleType'] = item.vehicleType
 
         axios
             .post( "http://localhost:8080/api/vehicle", itemData )
@@ -153,6 +176,7 @@ export const Add = () => {
                     name='regNo'
                     type='text'
                     value={item.regNo}
+                    required='required'
                     placeHolder="Enter Registration No"
                     callback={ handleOnChange }
                 >
@@ -160,14 +184,100 @@ export const Add = () => {
                 </Input>
 
                 <Input
-                    id = 'chassisNo'
-                    name='chassisNo'
+                    id = 'modelName'
+                    name='modelName'
                     type='text'
-                    value={item.chassisNo}
-                    placeHolder="Enter Chassis No"
+                    value={item.modelName}
+                    placeHolder="Enter Model No"
                     callback={ handleOnChange } >
 
                 </Input>
+
+                <Input
+                    id = 'vehicleSize'
+                    name='vehicleSize'
+                    type='number'
+                    min='3'
+                    value={item.vehicleSize}
+                    placeHolder="Enter Vehicle Size (ft)"
+                    callback={ handleOnChange } >
+
+                </Input>
+
+                <Input
+                    id = 'purchaseYear'
+                    name='purchaseYear'
+                    type='number'
+                    min='1886'
+                    value={item.purchaseYear}
+                    placeHolder="Enter Purchase Year"
+                    callback={ handleOnChange } >
+
+                </Input>
+
+                <Input
+                    id = 'purchaseCost'
+                    name='purchaseCost'
+                    type='number'
+                    min='1'
+                    value={item.purchaseCost}
+                    placeHolder="Enter Purchase Cost (Tk)"
+                    callback={ handleOnChange } >
+
+                </Input>
+
+                <Input
+                    id = 'dailyMaxTravelDistance'
+                    name='dailyMaxTravelDistance'
+                    type='number'
+                    min='1'
+                    value={item.dailyMaxTravelDistance}
+                    placeHolder="Enter Daily Max Travel Distance (km)"
+                    callback={ handleOnChange } >
+
+                </Input>
+
+                <Input
+                    id = 'yearlyTravelRange'
+                    name='yearlyTravelRange'
+                    type='number'
+                    min='1'
+                    value={item.yearlyTravelRange}
+                    placeHolder="Enter Yearly Max Travel Distance (Km)"
+                    callback={ handleOnChange } >
+
+                </Input>
+
+                <Enum
+                    id = 'fuelType'
+                    name='fuelType'
+                    type='number'
+                    value={item.fuelType}
+                    placeHolder="Enter Fuel Type"
+                    callback={ handleOnChange } >
+
+                </Enum>
+
+                <Input
+                    id = 'fuelConsumptionPerKm'
+                    name='fuelConsumptionPerKm'
+                    type='number'
+                    min='1'
+                    value={item.fuelConsumptionPerKm}
+                    placeHolder="Enter Fuel Consumption Per Km"
+                    callback={ handleOnChange } >
+
+                </Input>
+
+                {/*<Input
+                    id = 'vehicleType'
+                    name='vehicleType'
+                    type='number'
+                    value={item.vehicleType}
+                    placeHolder="Enter Vehicle Type"
+                    callback={ handleOnChange } >
+
+                </Input>*/}
 
 
                 < Button type='button' name={item.edit ? 'Update': 'Add Vehicle'}
@@ -200,7 +310,7 @@ export const Add = () => {
                 <tr>
                     <th>Vehicle ID <Button type='button' id="id" name="Desc" callback={ sortDesc } /> <Button type='button' id="id" name="Asc" callback={ sortAsc } /></th>
                     <th>Reg No <Button type='button' id="regNo" name="Desc" callback={ sortDesc } /> <Button type='button' id="regNo" name="Asc" callback={ sortAsc } /></th>
-                    <th>Chassis No<Button type='button' id="chassisNo" name="Desc" callback={ sortDesc } /><Button type='button' id="chassisNo" name="Asc" callback={ sortAsc } /></th>
+                    <th>Model No<Button type='button' id="modelName" name="Desc" callback={ sortDesc } /><Button type='button' id="modelName" name="Asc" callback={ sortAsc } /></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -209,7 +319,7 @@ export const Add = () => {
                         <tr key={item.id}>
                             <td>{item.id}</td>
                             <td>{item.regNo ?? `N/A`}</td>
-                            <td>{item.chassisNo ?? `N/A`}</td>
+                            <td>{item.modelName ?? `N/A`}</td>
                             <td><Button type='button' name="Delete" id={item.id} callback={ () => deleteItem(item.id) } /></td>
                             <td><Button type='button' name="Edit" id={item.id} callback={ () => editItem(item) } /></td>
                         </tr>
