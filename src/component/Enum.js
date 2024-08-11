@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const Enum = ({ fieldName, enumName }) => {
 
-    const [enumClass, setEnumClass] = React.useState({});
+    const [enumClass, setEnumClass] = React.useState([]);
 
     useEffect(() => {
 
@@ -25,6 +25,19 @@ export const Enum = ({ fieldName, enumName }) => {
 
     return (
         <div>
+
+            <select
+                value={fieldName}
+                id={fieldName}
+                >
+                {
+                    enumClass.map((item) => (
+                        <option key={item.value} value={item.value}>{item.label}</option>
+                    ))
+                }
+
+            </select>
+
 
         </div>
 
