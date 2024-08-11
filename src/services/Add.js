@@ -2,7 +2,7 @@ import Button from "../component/Button";
 import {fetchData} from "./Fetch";
 import React, {useEffect, useState} from "react";
 import Input from "../component/Input";
-import {Enum} from "../component/Enum";
+import Enum from "../component/Enum";
 import axios from "axios";
 
 export const Add = () => {
@@ -252,11 +252,8 @@ export const Add = () => {
                 <Enum
                     id = 'fuelType'
                     name='fuelType'
-                    type='number'
                     value={item.fuelType}
-                    placeHolder="Enter Fuel Type"
                     enumName='FuelType'
-                    fieldName='fuelType'
                     callback={ handleOnChange } >
 
                 </Enum>
@@ -272,15 +269,14 @@ export const Add = () => {
 
                 </Input>
 
-                {/*<Input
+                <Enum
                     id = 'vehicleType'
                     name='vehicleType'
-                    type='number'
                     value={item.vehicleType}
-                    placeHolder="Enter Vehicle Type"
+                    enumName='VehicleType'
                     callback={ handleOnChange } >
 
-                </Input>*/}
+                </Enum>
 
 
                 < Button type='button' name={item.edit ? 'Update': 'Add Vehicle'}
