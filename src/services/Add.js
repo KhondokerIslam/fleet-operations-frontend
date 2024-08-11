@@ -95,10 +95,22 @@ export const Add = () => {
         })
     }
 
+    const initForEdit = (items) => {
+
+       const initItem = {}
+
+        for (const key in items) {
+
+            initItem[key] = items[key] || '';
+        }
+
+        return initItem;
+    }
+
     const editItem = (item) => {
 
         setItem({
-            ...item,
+            ...initForEdit(item),
             edit: true
         })
     }

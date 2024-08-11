@@ -43,6 +43,7 @@ export default class Enum extends Component {
                 name={this.props.name}
                 onChange={ (e) => this.props.callback(e) }
                 >
+                <option value=''>---Select---</option>
                 {
                     this.state.enumItemList.map((item) => (
                         <option key={item.value} value={item.value}>{item.label}</option>
