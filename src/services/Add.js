@@ -331,6 +331,14 @@ export const Add = () => {
                             <td>{item.id}</td>
                             <td>{item.regNo ?? `N/A`}</td>
                             <td>{item.modelName ?? `N/A`}</td>
+                            <td>{item.vehicleSize ?? `N/A`}</td>
+                            <td>{item.purchaseYear ?? `N/A`}</td>
+                            <td>{item.purchaseCost ?? `N/A`}</td>
+                            <td>{item.dailyMaxTravelDistance ?? `N/A`}</td>
+                            <td>{item.yearlyTravelRange ?? `N/A`}</td>
+                            <td>{item.fuelType ?? `N/A`}</td>
+                            <td>{item.fuelConsumptionPerKm ?? `N/A`}</td>
+                            <td>{item.vehicleType ?? `N/A`}</td>
                             <td><Button type='button' name="Delete" id={item.id} callback={ () => deleteItem(item.id) } /></td>
                             <td><Button type='button' name="Edit" id={item.id} callback={ () => editItem(item) } /></td>
                         </tr>
