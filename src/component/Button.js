@@ -16,6 +16,7 @@ export default class Button extends Component{
                     className={this.props.className}
                     onClick={this.props.callback}
                     data-id={this.props.id}
+                    value={this.props.value}
             >
                 {this.props.name}
 
