@@ -19,7 +19,8 @@ export const Add = () => {
         yearlyTravelRange : "",
         fuelType : "",
         fuelConsumptionPerKm : "",
-        vehicleType : ""
+        vehicleType : "",
+        vehicleImage : ""
     }
 
     const [data, setData] = useState([]);
@@ -90,7 +91,6 @@ export const Add = () => {
     const handleOnChange = (e) => {
         setItem({
             ...item,
-            //[e.target.name]: {value: e.target.value},
             [e.target.name]: e.target.value
         })
     }
@@ -140,7 +140,8 @@ export const Add = () => {
             yearlyTravelRange,
             fuelType,
             fuelConsumptionPerKm,
-            vehicleType} = item;
+            vehicleType,
+            vehicleImage} = item;
 
         var itemData ={}
 
@@ -289,6 +290,16 @@ export const Add = () => {
                     callback={ handleOnChange } >
 
                 </Enum>
+
+                <Input
+                    type='file'
+                    id='vehicleImage'
+                    name='vehicleImage'
+                    multiple='true'
+                    callback={ handleOnChange } >
+
+
+                </Input>
 
 
                 < Button type='button' name={item.edit ? 'Update': 'Add Vehicle'}

@@ -21,6 +21,7 @@ export default class Input extends Component {
                 min={this.props.min}
                 max={this.props.max}
                 required={this.props.required}
+                multiple={this.props.multiple}
                 onChange={ (e => this.props.callback(e)) }
             >
 
